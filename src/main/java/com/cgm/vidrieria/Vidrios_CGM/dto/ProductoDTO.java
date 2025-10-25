@@ -1,54 +1,30 @@
-package com.cgm.vidrieria.Vidrios_CGM.entity;
+package com.cgm.vidrieria.Vidrios_CGM.dto;
 
-import jakarta.persistence.*;
 import java.math.BigDecimal;
 
-@Entity
-@Table(name = "producto")
-public class Producto {
+public class ProductoDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_producto")
     private Long idProducto;
-
-    @ManyToOne
-    @JoinColumn(name = "id_categoria", nullable = false)
-    private Categoria categoria;
-
-    @Column(nullable = false, length = 50)
+    private Long idCategoria;
     private String codigo;
-
-    @Column(nullable = false, length = 150)
     private String nombre;
-
-    @Column(columnDefinition = "TEXT")
     private String descripcion;
-
     private String tipo;
-
     private BigDecimal grosor;
     private BigDecimal alto;
     private BigDecimal ancho;
     private String color;
-
-    @Column(name = "precio_compra")
     private BigDecimal precioCompra;
-
-    @Column(name = "precio_venta")
     private BigDecimal precioVenta;
-
-    @Column(name = "stock_actual")
     private Integer stockActual;
-
     private Boolean estado;
 
     // Getters y Setters
     public Long getIdProducto() { return idProducto; }
     public void setIdProducto(Long idProducto) { this.idProducto = idProducto; }
 
-    public Categoria getCategoria() { return categoria; }
-    public void setCategoria(Categoria categoria) { this.categoria = categoria; }
+    public Long getIdCategoria() { return idCategoria; }
+    public void setIdCategoria(Long idCategoria) { this.idCategoria = idCategoria; }
 
     public String getCodigo() { return codigo; }
     public void setCodigo(String codigo) { this.codigo = codigo; }

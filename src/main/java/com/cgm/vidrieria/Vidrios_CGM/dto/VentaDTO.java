@@ -1,54 +1,41 @@
-package com.cgm.vidrieria.Vidrios_CGM.entity;
-
-import jakarta.persistence.*;
+package com.cgm.vidrieria.Vidrios_CGM.dto;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
-@Entity
-@Table(name = "venta")
-public class Venta {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_venta")
+public class VentaDTO {
     private Long idVenta;
-
     private LocalDateTime fecha;
-
-    @ManyToOne
-    @JoinColumn(name = "id_cliente")
-    private Cliente cliente;
-
-    @ManyToOne
-    @JoinColumn(name = "id_empleado")
-    private Empleado vendedor;
-
+    private Long clienteId;
+    private String clienteNombre;
+    private Long vendedorId;
+    private String vendedorNombre;
     private BigDecimal subtotal;
     private BigDecimal impuesto;
     private BigDecimal descuentoTotal;
     private BigDecimal total;
-
     private String tipoPago;
     private String estado;
+    private List<DetalleVentaDTO> items;
 
-    @OneToMany(mappedBy = "venta", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<DetalleVenta> items = new ArrayList<>();
-
-    // Getters y Setters
     public Long getIdVenta() { return idVenta; }
     public void setIdVenta(Long idVenta) { this.idVenta = idVenta; }
 
     public LocalDateTime getFecha() { return fecha; }
     public void setFecha(LocalDateTime fecha) { this.fecha = fecha; }
 
-    public Cliente getCliente() { return cliente; }
-    public void setCliente(Cliente cliente) { this.cliente = cliente; }
+    public Long getClienteId() { return clienteId; }
+    public void setClienteId(Long clienteId) { this.clienteId = clienteId; }
 
-    public Empleado getVendedor() { return vendedor; }
-    public void setVendedor(Empleado vendedor) { this.vendedor = vendedor; }
+    public String getClienteNombre() { return clienteNombre; }
+    public void setClienteNombre(String clienteNombre) { this.clienteNombre = clienteNombre; }
+
+    public Long getVendedorId() { return vendedorId; }
+    public void setVendedorId(Long vendedorId) { this.vendedorId = vendedorId; }
+
+    public String getVendedorNombre() { return vendedorNombre; }
+    public void setVendedorNombre(String vendedorNombre) { this.vendedorNombre = vendedorNombre; }
 
     public BigDecimal getSubtotal() { return subtotal; }
     public void setSubtotal(BigDecimal subtotal) { this.subtotal = subtotal; }
@@ -68,6 +55,6 @@ public class Venta {
     public String getEstado() { return estado; }
     public void setEstado(String estado) { this.estado = estado; }
 
-    public List<DetalleVenta> getItems() { return items; }
-    public void setItems(List<DetalleVenta> items) { this.items = items; }
+    public List<DetalleVentaDTO> getItems() { return items; }
+    public void setItems(List<DetalleVentaDTO> items) { this.items = items; }
 }
